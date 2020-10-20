@@ -1,0 +1,32 @@
+Instructions to start Blockchain :
+
+Open terminal and navigate to KYC-Blockchain which contains the Init.json file
+
+--datadir => KYC_Blockchain
+
+1. initialise geth : geth --datadir ./KYC_Blockchain init ./Init.json
+2. Start the blockchain : geth --datadir ./KYC_Blockchain --networkid 2019 console
+
+
+At this point basic blockchain is setup, now lets connect to the blockchain defining rpc port :
+
+1. geth --datadir ./KYC_Blockchain --networkid 2019 --rpc --rpcport 30304 --allow-insecure-unlock console
+2.Create an account and let the password be 'admin' : personal.newAccount('admin')
+3. Unlock the account : personal.unlockAccount(eth.accounts[0],'admin',0)
+4. Start Mining : miner.start()
+
+Now we are ready to deploy smart contract on the block chain using truffle
+
+Instructions to deploy smart contract : 
+
+1. Navigate to KYC-SC in the directory Phase-3 and open terminal 
+2. truffle-config.js file is arleady configured, we have defined two networks (1. Development - used to deploy smart contract on Ganache and 2. geth - used to deploy contarct on private eth network) we have also defined the compiler to be 5.9
+
+3. To compile smart contract : truffle compile
+4. Migrate smart contract to blockchain : truffle migrate --network geth
+
+Interact with the contract using truffle :
+
+1. Open truffle console : truffle console --network geth 
+2. create an instance of the contract : let kyccontract = await KYCContarct.deployed()
+3. Now we could use kyccontract.functionName (all the functions available in KYCContract).

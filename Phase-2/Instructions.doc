@@ -1,0 +1,52 @@
+Instruction to test out the KYCContract code in Remix :
+
+
+Brief flow to be used while testing code in Remix IDE :
+Note : Increase the Gas Limit from : 3000000 to 30000000
+
+1. deploy smart contract - accout used to deploy contract = Admin account
+2. Add/remove bank - using the admin account
+3. Change account to a bank address and then Upvote Bank (can use any one address which was added as bank in step 2)
+4. Add KYC request - use Bank Address
+5. Add customer data - use Bank Address
+6. Upvote Customer data - use Bank Address
+7. Set password on customer data - use Bank Address  
+8. View Customer rating/ Bank rating / Get Bank details /Retrieve access history for a resource/ Get Bank Requests/ (use Bank Address)
+
+
+Detailed Instructions : 
+
+1. Increase the Gas Limit from : 3000000 to 30000000
+
+2. Account used to deploy the Smart Contract is considered Admin
+
+3. Use the same account and add/remove banks using addBank/removeBank function. Copy the 2nd,3rd,4th address from remix ACCOUNT tab and pass them in the addBank Address field one after the other to add/remove banks.
+
+In this code flow lets assume we have 3 banks.
+
+4. addBank : 'bank1','bankAddress','1';
+5. After the banks are added, change the Account to bank1 and upvote the bank using upvoteBank function. upvoteBank('bank1-Address')
+6. Repeat step 5 by changing the Account to different bank (bank2 and bank3) to upvoteBank1.
+
+Now that Bank1 is a trusted bank and bank Rating is as per the required condition we should be able to add customer to KYC request.
+
+7. Switch Account to Bank1, and add customer KYC request using fucntion : addKycRequest('Avi','customerData');
+
+at this point we could switch Account to bank2 and still add another KYC request 
+
+8. A bank then verifies the customer KYC data which is then added to the customer  use addCustomer('Avi','customerData');
+
+9. Banks can upvote customer data to show authenticity of the data which increase/decrease cutomer rating and then if the given condition for customer rating is satisfied we will add the customer to FinalCustomer list. 
+we can use upvoteCustomer(_userName) to upvote a customer.
+
+10. If customer want to limit their data from other banks they could setup a password using :
+setPassword('username','password');
+
+11. Now banks who have customers password can view the customer data using : viewCustomer('username','password')
+
+12. If customer wish to change the data they provided before we could do so using the modifyCustomer function, if the bank have access to customer password it can change the customer data.
+modifyCustomerData('username','password')
+
+
+
+
