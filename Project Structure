@@ -1,0 +1,14 @@
+- Project Structure
+
+Project is devided into 3 Phase:
+
+1. Phase-1:
+Contains Solidity contract 
+
+2. Phase-2:
+contains solidity contract
+
+3. Phase-3:
+contains 2 directories:
+1. KYC-Blockchian => contains Instructions.doc (all commands to initialize init.json file)
+2. KYC-SC => this is the Truffle project directory
